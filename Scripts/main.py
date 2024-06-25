@@ -3,6 +3,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+import os
+
+# Crie a pasta results se ela não existir
+os.makedirs('../results', exist_ok=True)
 
 # Load the dataset
 file_path = '../data/ConsumoCo2.csv'
@@ -50,3 +54,12 @@ print("Linear Regression Metrics:")
 print(linear_metrics)
 print("\nKNN Metrics:")
 print(knn_metrics)
+
+# Save the results to files
+with open('../results/linear_metrics.txt', 'w') as f:
+    for key, value in linear_metrics.items():
+        f.write(f'{key}: {value}\n')
+
+with open('../results/knn_metrics.txt', 'w') as f:
+    for key, value in knn_metrics.items():
+        f.write(f'{key}: {value}\n')
